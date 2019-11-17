@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     entry: './src/main.js',
@@ -20,12 +21,22 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
+    module: {
+        rules: [
+            // ... 其它规则
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }
+        ]
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: "vue_webpack",
             filename: "index.html",
             template: './public/index.html'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new VueLoaderPlugin()
     ]
 };
