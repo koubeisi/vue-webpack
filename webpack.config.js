@@ -15,6 +15,11 @@ module.exports = {
     devServer: {
         contentBase: './dist'
     },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: "vue_webpack",
